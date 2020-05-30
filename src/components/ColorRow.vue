@@ -8,7 +8,7 @@
 			<div class="btn-group btn-group-sm">
 				<input type="color" class="btn btn-square btn-light border-light"
 				       :style="{background: color.hexColor}"
-				       v-model="color.hexColor"
+				       v-model.lazy="color.hexColor"
 				/>
 				<div class="btn-group d-inline-block d-sm-none">
 					<button type="button" class="btn btn-height btn-info border-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,6 +54,12 @@
 					style: { color: this.color.hexColor },
 					class: { 'use-whitney-font': this.useWhitneyFont }
 				}
+			},
+			hexColor() { return this.color.hexColor; }
+		},
+		watch: {
+			hexColor(newValue, oldValue) {
+				this.$store.commit('rowColor', {index: this.index, color: newValue})
 			}
 		},
 		methods: {

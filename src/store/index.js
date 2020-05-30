@@ -43,6 +43,9 @@ const store = new Vuex.Store({
 		colors(state, newValue) {
 			state.colors = newValue;
 		},
+		rowColor(state, {index, color}) {
+			state.colors[index].color = color
+		},
 		resetColors(state) {
 			state.colors = [...defaultColors];
 		},
