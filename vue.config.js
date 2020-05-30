@@ -1,9 +1,10 @@
 module.exports = {
-	css: {
+	outputDir: 'docs',
+    css: {
 		loaderOptions: {
 			sass: {
-				prependData: `@import "@/styles/_imports.scss";`
+				prependData: '@import "@/styles/_imports.scss";'
 			}
 		}
-	}
+	},
 };

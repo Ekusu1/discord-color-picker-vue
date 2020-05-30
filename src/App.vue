@@ -1,16 +1,19 @@
 <template>
-	<div id="app" class="container-fluid p-2">
+	<div id="app" class="container p-2">
+		<AppHeader />
+		<ColorsList />
 	</div>
 </template>
 
 
 <script>
-	import { Header } from '@/components/Header';
+	import AppHeader from '@/components/AppHeader';
+	import ColorsList from "@/components/ColorsList";
 
 	export default {
-		name: "Header",
 		components: {
-			Header
+			AppHeader,
+			ColorsList
 		}
 	}
 </script>

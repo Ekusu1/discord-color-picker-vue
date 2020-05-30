@@ -1,2 +1,94 @@
 @import 'imports';
 @import 'bootstrap/bootstrap';
+
+body {
+	overflow-y: scroll;
+}
+
+/* Bootstrap overrides */
+.container-fluid { max-width: 600px; }
+.btn { padding: .25rem !important; }
+
+/* Spectrum Specific */
+.sp-replacer { padding: 0 !important; }
+
+.sp-preview {
+	margin: 0;
+	width:  100%;
+	height: 100%;
+	border: none;
+
+	border-top-left-radius: .2rem;
+	border-bottom-left-radius: .2rem;
+}
+.sp-preview-inner {
+	border-top-left-radius: .2rem;
+	border-bottom-left-radius: .2rem;
+}
+
+.sp-dd { display: none; }
+
+/* Custom */
+.btn-square {
+	width:   31px;
+	height:  31px;
+}
+.btn-height {
+	height:  31px;
+}
+
+.username {
+	padding:     0 10px !important;
+	border:      none;
+	font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+	font-size:   15px;
+	font-weight: 600;
+}
+
+.discord-theme-light {
+	background-color: #ffffff;
+}
+
+.discord-theme-dark {
+	background-color: #36393f;
+}
+
+.discord-theme-amoled {
+	background-color: #000000;
+}
+
+.h {
+	font-family: $headings-font-family;
+	font-weight: $headings-font-weight;
+	line-height: $headings-line-height;
+	color: $headings-color;
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+	$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+	@include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+		.h1#{$infix} { @include font-size($h1-font-size); }
+		.h2#{$infix} { @include font-size($h2-font-size); }
+		.h3#{$infix} { @include font-size($h3-font-size); }
+		.h4#{$infix} { @include font-size($h4-font-size); }
+		.h5#{$infix} { @include font-size($h5-font-size); }
+		.h6#{$infix} { @include font-size($h6-font-size); }
+	}
+}
+
+.color-row {
+	background-color: $gray-900;
+}
+
+.drag {
+	&-handle {
+		cursor: move !important;
+		cursor: -webkit-grabbing !important;;
+	}
+	&-chosen {
+		opacity: 0.25;
+	}
+	&-ghost {
+		opacity: 0.75;
+	}
+}
