@@ -1,5 +1,5 @@
 <template>
-	<header class="row no-gutters justify-content-center">
+	<header id="app-header" class="row no-gutters justify-content-center">
 		<div class="card col bg-dark text-light mb-2">
 			<div class="card-header p-1">
 				<div class="row no-gutters align-items-center">
