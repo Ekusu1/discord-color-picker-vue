@@ -6,10 +6,7 @@
 		       v-if="showAmoled"/>
 		<div class="col-auto py-1 pl-1">
 			<div class="btn-group btn-group-sm">
-				<input type="color" class="btn btn-square btn-light border-light"
-				       :style="{background: color.hexColor}"
-				       v-model.lazy="color.hexColor"
-				/>
+				<TempColorPicker :color="hexColor" @updateColor="updateColor" />
 				<div class="btn-group d-inline-block d-sm-none">
 					<button type="button" class="btn btn-height btn-info border-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<span class="sr-only">Toggle Dropdown</span>
@@ -39,8 +36,12 @@
 </template>
 
 <script>
+	import TempColorPicker from "@/components/TempColorPicker";
 	export default {
 		name: "ColorRow",
+		components: {
+			TempColorPicker
+		},
 		props: {
 			index: Number,
 			color: Object
@@ -57,12 +58,10 @@
 			},
 			hexColor() { return this.color.hexColor; }
 		},
-		watch: {
-			hexColor(newValue, oldValue) {
-				this.$store.commit('rowColor', {index: this.index, color: newValue})
-			}
-		},
 		methods: {
+			updateColor(hexColor) {
+				this.$store.commit('rowColor', {index: this.index, hexColor})
+			},
 			copy() {
 				let e = document.createElement('textarea');
 				e.value = this.color.hexColor.toUpperCase();

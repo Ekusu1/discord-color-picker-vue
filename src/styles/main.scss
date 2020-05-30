@@ -96,3 +96,15 @@ body {
 		opacity: 0.75;
 	}
 }
+
+.hu-color-picker {
+	z-index: 9999;
+	border: 1px solid $white;
+	position: absolute;
+	left: 0;
+	top: 100%;
+	margin: .25rem 0;
+
+	.color-alpha, .color-type:nth-child(4) { display: none; }
+	.color-show canvas { width: 100%; }
+}

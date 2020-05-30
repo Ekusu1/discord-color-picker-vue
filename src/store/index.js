@@ -8,10 +8,9 @@ const localStorageName = 'ex-discord-color-picker';
 
 const defaultColors = [{ name: 'username', hexColor: '#99aab5' }];
 const defaultPalette = [
-	['#99aab5', '#ffffff', '#808080', '#000000'],
-	['#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#e91e63', '#f1c40f', '#e74c3c', '#95a5a6', '#607d8b'],
-	['#11806a', '#1f8b4c', '#206694', '#71368a', '#ad1457', '#c27c0e', '#992d22', '#979c9f', '#546e7a'],
-	[]
+	'#99aab5', '#ffffff', '#808080', '#000000',
+	'#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#e91e63', '#f1c40f', '#e74c3c', '#95a5a6', '#607d8b',
+	'#11806a', '#1f8b4c', '#206694', '#71368a', '#ad1457', '#c27c0e', '#992d22', '#979c9f', '#546e7a'
 ];
 
 const store = new Vuex.Store({
@@ -43,8 +42,8 @@ const store = new Vuex.Store({
 		colors(state, newValue) {
 			state.colors = newValue;
 		},
-		rowColor(state, {index, color}) {
-			state.colors[index].color = color
+		rowColor(state, {index, hexColor}) {
+			state.colors[index].hexColor = hexColor
 		},
 		resetColors(state) {
 			state.colors = [...defaultColors];
@@ -78,6 +77,7 @@ const store = new Vuex.Store({
 });
 
 function saveState(state) {
+	console.log('saved state');
 	localStorage.setItem(localStorageName, JSON.stringify(state));
 }
 
