@@ -64,7 +64,7 @@
 						</li>
 						<li>
 							Click
-							<button type="button" class="btn btn-square border-light text-info btn-sm" data-toggle="collapse" data-target="#instructions" title="show/hide instructions">
+							<button type="button" class="btn btn-square border-light text-info btn-sm" title="show/hide instructions" >
 								<font-awesome-icon icon="info" :fixed-width="true" />
 							</button>
 							at the top right to hide/show the instructions (the ones you are reading right now).
@@ -72,55 +72,27 @@
 					</ul>
 					<p>BTW this site remembers your changes if you want to reset use those buttons:</p>
 				</div>
-				<div>
-					<button type="button" class="btn btn-sm btn-danger mr-1 mb-1" @reset="resetPallet">reset color palette</button>
-					<button type="button" class="btn btn-sm btn-danger mr-1 mb-1" @reset="resetColors">reset user colors</button>
-					<button type="button" class="btn btn-sm btn-danger mr-1 mb-1" @reset="resetAll">reset all</button>
-				</div>
-				<div>
-					<label class="form-check">
-						<input type="checkbox" class="form-check-input" v-model="showAmoled">&nbsp;
-						<span class="form-check-label">show AMOLED preview</span>
-					</label>
-				</div>
-				<div>
-					<label class="form-check">
-						<input type="checkbox" class="form-check-input" v-model="hideInstructionsInitial">&nbsp;
-						<span class="form-check-label">hide the instructions next time?</span>
-					</label>
-				</div>
+				<AppSettings />
 			</div>
 		</div>
 	</header>
 </template>
 
 <script>
+	import AppSettings from "@/components/AppSettings";
 	export default {
 		name: "AppHeader",
+		components: {
+			AppSettings
+		},
 		data() {
 			return {
 				showInstructions: !this.$store.getters['hideInstructionsInitial'],
-				showAmoled: this.$store.getters['showAmoled'],
-				hideInstructionsInitial: this.$store.getters['hideInstructionsInitial']
 			}
-		},
-		watch: {
-			showAmoled(newValue, oldValue) { this.$store.commit('showAmoled', newValue); },
-			hideInstructionsInitial(newValue, oldValue) { this.$store.commit('hideInstructionsInitial', newValue); }
 		},
 		methods: {
 			toggleInstructions() {
 				this.showInstructions = !this.showInstructions;
-			},
-			resetPallet(){
-				this.$store.commit('resetPallet')
-			},
-			resetColors(){
-				this.$store.commit('resetColors')
-			},
-			resetAll(){
-				this.resetPallet();
-				this.resetColors();
 			}
 		}
 	}

@@ -40,9 +40,13 @@ body {
 .username {
 	padding:     0 10px !important;
 	border:      none;
-	font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 	font-size:   15px;
 	font-weight: 600;
+}
+
+.use-whitney-font {
+	font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 }
 
 .discord-theme-light {

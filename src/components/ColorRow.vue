@@ -1,8 +1,8 @@
 <template>
 	<div class="row no-gutters color-row">
-		<input type="text" class="col username discord-theme-light" v-model="color.name" :style="{color: color.hexColor}"/>
-		<input type="text" class="col username discord-theme-dark" v-model="color.name" :style="{color: color.hexColor}"/>
-		<input type="text" class="col username discord-theme-amoled" v-model="color.name" :style="{color: color.hexColor}"
+		<input type="text" class="col username discord-theme-light" v-model="color.name" v-bind="textBind"/>
+		<input type="text" class="col username discord-theme-dark" v-model="color.name" v-bind="textBind"/>
+		<input type="text" class="col username discord-theme-amoled" v-model="color.name" v-bind="textBind"
 		       v-if="showAmoled"/>
 		<div class="col-auto py-1 pl-1">
 			<div class="btn-group btn-group-sm">
@@ -46,8 +46,15 @@
 			color: Object
 		},
 		computed: {
+			useWhitneyFont() { return this.$store.getters['useWhitneyFont'] },
 			showAmoled() { return this.$store.getters['showAmoled'] },
-			disableRemove() { return this.$store.getters['colors'] < 2; }
+			disableRemove() { return this.$store.getters['colors'] < 2; },
+			textBind(){
+				return {
+					style: { color: this.color.hexColor },
+					class: { 'use-whitney-font': this.useWhitneyFont }
+				}
+			}
 		},
 		methods: {
 			copy() {

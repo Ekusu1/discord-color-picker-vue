@@ -17,12 +17,14 @@ const defaultPalette = [
 const store = new Vuex.Store({
 	state: {
 		showAmoled: true,
+		useWhitneyFont: true,
 		hideInstructionsInitial: false,
 		colors: [...defaultColors],
 		palette: [...defaultPalette]
 	},
 	getters: {
 		showAmoled: state => state.showAmoled,
+		useWhitneyFont: state => state.useWhitneyFont,
 		hideInstructionsInitial: state => state.hideInstructionsInitial,
 		colors: state => state.colors,
 		colorsRemovable: state => state.colors.length > 1,
@@ -31,6 +33,9 @@ const store = new Vuex.Store({
 	mutations: {
 		showAmoled(state, newValue) {
 			state.showAmoled = newValue;
+		},
+		useWhitneyFont(state, newValue) {
+			state.useWhitneyFont = newValue;
 		},
 		hideInstructionsInitial(state, newValue) {
 			state.hideInstructionsInitial = newValue;
