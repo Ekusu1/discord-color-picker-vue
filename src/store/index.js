@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import _ from 'lodash';
+import { isValidJson } from "@/utils";
 
 Vue.use(Vuex);
 
@@ -43,7 +44,7 @@ const store = new Vuex.Store({
 			state.colors = newValue;
 		},
 		rowColor(state, {index, hexColor}) {
-			state.colors[index].hexColor = hexColor
+			state.colors[index].hexColor = hexColor.toUpperCase()
 		},
 		resetColors(state) {
 			state.colors = [...defaultColors];
@@ -65,13 +66,52 @@ const store = new Vuex.Store({
 		}
 	},
 	actions: {
-		importColors({ state, commit }, json) {
+		importColors({ state, commit }, jsonString) {
 			try {
-				const colors = JSON.parse(json).map(entry => ({ name: entry.name, color: entry.color }));
+				const patterns = {
+					hex3:  /^#[A-F0-9]{3}$/,
+					hex3a: /^#[A-F0-9]{4}$/,
+					hex6:  /^#[A-F0-9]{6}$/,
+					hex6a: /^#[A-F0-9]{8}$/,
+				}
+
+				let index = 0
+				const colors = isValidJson(jsonString).map(entry => {
+					let { name, hexColor } = entry;
+
+					if (!name) {
+						throw `name not provided on index ${index}`;
+					}
+					if (!hexColor) {
+						throw `hexColor not provided for '${name}' on index ${index}`;
+					}
+
+					hexColor = hexColor.toUpperCase()
+
+					// check if valid hex color pattern
+					if (!Object.values(patterns).some((p)=>!!hexColor.match(p))) {
+						throw `color not in hex format for '${name}' on index ${index}`;
+					}
+
+					// remove alpha
+					hexColor = {
+						[!!hexColor.match(patterns.hex3a)]: hexColor.substring(0, 4),
+						[!!hexColor.match(patterns.hex6a)]: hexColor.substring(0, 7)
+					}[true] || hexColor
+
+					index++;
+					return { name, hexColor }
+				});
+
 				commit('colors', colors);
 			} catch (e) {
-				throw new Error('Could not import colors, check the format.');
+				console.log(e);
+				throw e
 			}
+		},
+		exportColors({ state }) {
+			return JSON.stringify(state.colors, null,"\t")
+				.replace(/\t\{\n\t+(".*?,)\n\t+(".*?)\n\t}/gm, "\t{ $1 $2 }");
 		}
 	}
 });
