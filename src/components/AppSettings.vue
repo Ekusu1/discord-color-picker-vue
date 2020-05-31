@@ -7,21 +7,21 @@
 			<button type="button" class="btn btn-sm btn-danger mr-1 mb-1" @reset="resetAll">reset all</button>
 		</div>
 		<div>
-			<label class="form-check">
-				<input type="checkbox" class="form-check-input" v-model="showAmoled">&nbsp;
-				<span class="form-check-label">show AMOLED preview</span>
+			<label class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" v-model="showAmoled">&nbsp;
+				<span class="custom-control-label">show AMOLED preview</span>
 			</label>
 		</div>
 		<div>
-			<label class="form-check">
-				<input type="checkbox" class="form-check-input" v-model="useWhitneyFont">&nbsp;
-				<span class="form-check-label">use Whitney Font in preview</span>
+			<label class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" v-model="useWhitneyFont">&nbsp;
+				<span class="custom-control-label">use Whitney Font in preview</span>
 			</label>
 		</div>
 		<div>
-			<label class="form-check">
-				<input type="checkbox" class="form-check-input" v-model="hideInstructionsInitial">&nbsp;
-				<span class="form-check-label">hide the instructions next time?</span>
+			<label class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" v-model="hideInstructionsInitial">&nbsp;
+				<span class="custom-control-label">hide the instructions next time?</span>
 			</label>
 		</div>
 	</div>
