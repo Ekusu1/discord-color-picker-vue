@@ -1,0 +1,38 @@
+@import 'imports';
+
+.btn {
+	padding: .25rem !important;
+
+	&-square {
+		width:   31px;
+		height:  31px;
+	}
+	&-height {
+		height:  31px;
+	}
+}
+
+.h {
+	font-family: $headings-font-family;
+	font-weight: $headings-font-weight;
+	line-height: $headings-line-height;
+	color: $headings-color;
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+	$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+	@include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+		.h1#{$infix} { @include font-size($h1-font-size); }
+		.h2#{$infix} { @include font-size($h2-font-size); }
+		.h3#{$infix} { @include font-size($h3-font-size); }
+		.h4#{$infix} { @include font-size($h4-font-size); }
+		.h5#{$infix} { @include font-size($h5-font-size); }
+		.h6#{$infix} { @include font-size($h6-font-size); }
+	}
+}
+
+.modal {
+	.modal-backdrop { z-index: 100000; }
+	.modal-dialog { z-index: 100001; }
+	.modal-footer > * { margin: 0 0 0 0.5rem; }
+}
